@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - "**.tex"
 
 permissions:
   contents: write
@@ -22,6 +24,7 @@ jobs:
         with:
           tools: texlive-full latexmk
           cache: true
+          key: texlive-full
 
       - name: Build
         run: make
