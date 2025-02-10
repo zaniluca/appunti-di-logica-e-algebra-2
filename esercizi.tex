@@ -249,9 +249,9 @@
               \]
               Possiamo verificare che, partendo da $b$, non è possibile soddisfare $ (\neg\Box X \lor \Diamond Y)$, quindi la formula è \textbf{falsa}.
 
-        \item Per la validità in $(S,R)$, dobbiamo verificare la formula per ogni valutazione possibile, chiaramente da ogni punto possiamo raggiungere un punto dove $X \lor Y$ è vero (almeno una variable è vera). Quindi $(S,R) \models \Box\Box\Box(X \lor Y)$ è \textbf{vero}.
+        \item Per la validità in $(S,R)$, dobbiamo verificare la formula per ogni valutazione possibile, è facile notare che la formula $(X \lor Y)$ non è sempre vera ogni assegnazione (non è una tautologia). Quindi $(S,R) \models \Box\Box\Box(X \lor Y)$ è \textbf{falso}.
 
-        \item Similmente, da qualsiasi punto, possiamo, in 3 step raggiungere un punto dove $\neg X \land Y$ è vero, infatti in 3 mosse possiamo sempre raggiungere $d$. Quindi $(S,R) \models \Diamond\Diamond\Diamond(\neg X \land Y)$ è \textbf{vero}.
+        \item Similmente al punto precedente è possibile trovare una valutazione in cui la formula non risulta vera. Quindi $(S,R) \models \Diamond\Diamond\Diamond(\neg X \land Y)$ è \textbf{falso}.
     \end{enumerate}
 }
 
