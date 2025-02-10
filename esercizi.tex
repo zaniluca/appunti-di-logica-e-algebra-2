@@ -1,0 +1,318 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz-cd}
+\usepackage[margin=2cm]{geometry}
+\setlength{\parindent}{0pt}
+
+\newcommand{\esercizio}[2]{%
+    \textbf{Testo:}
+    #1
+    
+    \vspace{1.5em}
+    
+    \textbf{Soluzione:}
+    #2
+}
+
+\def\nicefrac#1#2{     
+    \raise.5ex\hbox{$#1$}    
+    \kern-.1em/\kern-.05em     
+    \lower.5ex\hbox{$#2$}
+}
+
+\title{Soluzione degli esercizi di Logica e Algebra 2}
+\author{Luca Zani}
+
+\begin{document}
+\maketitle
+
+\section*{Esercizio A.1}
+\esercizio{%
+    Sia $f : M_1 \to M_2$ un morfismo di monoidi e sia $Y \subseteq M_2$ un sottomonoide. Mostrare che $f^{-1}(Y) := \{x \in M_1 : f(x) \in Y\}$ è un sottomonoide di $M_1$.
+}{%
+    Per dimostrare che $f^{-1}(Y)$ è un sottomonoide di $M_1$, dobbiamo verificare:
+    \begin{itemize}
+        \item L'elemento neutro $e_1$ di $M_1$ appartiene a $f^{-1}(Y)$: $f(e_1) = e_2 \in Y$ poiché $Y$ è sottomonoide
+        \item La chiusura rispetto all'operazione:
+
+              Se $x,y \in f^{-1}(Y)$, allora $f(x), f(y) \in Y$ Quindi $f(x \cdot y) = f(x) \cdot f(y) \in Y$ Perciò $x \cdot y \in f^{-1}(Y)$
+    \end{itemize}
+}
+
+\section*{Esercizio A.2}
+\esercizio{%
+    Sia $f : G_1 \to G_2$ un morfismo di gruppi e sia $H \subseteq G_2$ un sottogruppo. Mostrare che $f^{-1}(H) := \{g \in G_1 : f(g) \in H\}$ è un sottogruppo di $G_1$.
+}{%
+    Per dimostrare che $f^{-1}(H)$ è un sottogruppo, verifichiamo:
+    \begin{itemize}
+        \item Contiene identità: $e_1 \in f^{-1}(H)$ poiché $f(e_1) = e_2 \in H$
+        \item Chiusura: Se $x,y \in f^{-1}(H)$, allora $f(xy) = f(x)f(y) \in H$, quindi $xy \in f^{-1}(H)$
+        \item Inverso: Se $x \in f^{-1}(H)$, allora $f(x^{-1}) = f(x)^{-1} \in H$, quindi $x^{-1} \in f^{-1}(H)$
+    \end{itemize}
+}
+
+\section*{Esercizio A.3}
+\esercizio{%
+    Siano $G_1$ e $G_2$ due gruppi abeliani e $H_1 \subseteq G_1$, $H_2 \subseteq G_2$ due sottogruppi. Dimostrare che, come gruppi
+    \[
+        \nicefrac{(G_1 \times G_2)}{(H_1 \times H_2)} \cong (\nicefrac{G_1}{H_1}) \times (\nicefrac{G_2}{H_2})
+    \]
+}{%
+    Definiamo
+    \[
+        \varphi: G_1 \times G_2 \to (\nicefrac{G_1}{H_1}) \times (\nicefrac{G_2}{H_2}) \qquad \varphi(g_1,g_2) = (g_1H_1, g_2H_2)
+    \]
+
+    \begin{itemize}
+        \item $\varphi$ è un omomorfismo:
+              \begin{align*}
+                  \varphi((g_1,g_2)(g'_1,g'_2)) & = \varphi(g_1g'_1,g_2g'_2) = (g_1g'_1H_1,g_2g'_2H_2) \\
+                                                & = (g_1H_1,g_2H_2)(g'_1H_1,g'_2H_2)
+              \end{align*}
+        \item $\ker(\varphi) = H_1 \times H_2$
+        \item $\varphi$ è suriettivo
+    \end{itemize}
+    Quindi per il teorema di isomorfismo dei gruppi:
+    \[
+        \nicefrac{(G_1 \times G_2)}{(H_1 \times H_2)} \cong (\nicefrac{G_1}{H_1}) \times (\nicefrac{G_2}{H_2})
+    \]
+}
+
+\section*{Esercizio A.4}
+\esercizio{%
+    Si consideri il gruppo $G := \mathbb{Z}_6$ e il sottogruppo $H := \langle2\rangle$. Dire chi sono in $G/H$: $[0]$, $[1]$ e $[3]$.
+}{%
+    \[
+        H = \langle2\rangle = \{0,2,4\} \in \mathbb{Z}_6
+    \]
+    \begin{itemize}
+        \item $[0] = \{0,2,4\}$
+        \item $[1] = \{1,3,5\}$
+        \item $[3] = \{3,5,1\} = [1]$
+    \end{itemize}
+}
+
+\section*{Esercizio A.5}
+\esercizio{%
+    Si consideri il gruppo $G := \mathbb{Z}_6 \times \mathbb{Z}_6$ e il sottogruppo $H := \langle3\rangle \times \{0\}$. Dire chi sono in $G/H$: $[(0,0)]$, $[(1,1)]$ e $[(3,4)]$.
+}{%
+    \[
+        H = \langle3\rangle \times \{0\} = \{(0,0),(3,0)\}
+    \]
+    \begin{itemize}
+        \item $[(0,0)] = \{(0,0),(3,0)\}$
+        \item $[(1,1)] = \{(1,1),(4,1)\}$
+        \item $[(3,4)] = \{(3,4),(0,4)\}$
+    \end{itemize}
+}
+
+\section*{Esercizio A.6}
+\esercizio{%
+    Si consideri il gruppo $G := \mathbb{Z} \times \mathbb{Z}_4$ e il sottogruppo $H := \langle5\rangle \times \langle2\rangle$. Dire chi sono in $G/H$: $[(0,0)]$, $[(1,1)]$ e $[(3,3)]$.
+}{%
+    \[
+        H = \langle5\rangle \times \langle2\rangle = 5\mathbb{Z} \times \{0,2\}
+    \]
+    \begin{itemize}
+        \item $[(0,0)] = \{(5k,0),(5k,2): k \in \mathbb{Z}\}$
+        \item $[(1,1)] = \{(5k+1,1),(5k+1,3): k \in \mathbb{Z}\}$
+        \item $[(3,3)] = \{(5k+3,3),(5k+3,1): k \in \mathbb{Z}\}$
+    \end{itemize}
+}
+
+\section*{Esercizio A.7}
+\esercizio{%
+    Un elemento $a$ di un anello $A$ si dice idempotente se $a^2 = a$, e si dice nilpotente se $a^n = 0$ per qualche $n \in \mathbb{N}\setminus\{0\}$.
+    \begin{enumerate}
+        \item Mostrare che se $a \neq 1_A$ è idempotente allora è uno zero-divisore di $A$.
+        \item Mostrare che se $a$ è nilpotente allora è uno zero-divisore di $A$.
+    \end{enumerate}
+}{%
+    \begin{enumerate}
+        \item Se $a$ è idempotente, $a^2 = a$ quindi $a(a-1) = 0$, se $a \neq 1_A$, allora $a-1 \neq 0$ dunque $a$ è uno zero-divisore
+        \item Se $a$ è nilpotente, esiste $n$ tale che $a^n = 0$
+              Sia $m$ il minimo tale che $a^m = 0$
+              Allora $a^{m-1} \neq 0$ ma $a \cdot a^{m-1} = 0$
+              Dunque $a$ è uno zero-divisore
+    \end{enumerate}
+}
+
+\section*{Esercizio A.8}
+\esercizio{%
+    Siano $a,b,c \in \mathbb{N}\setminus\{0,1\}$ e sia
+    \[
+        f : \mathbb{Z} \to \mathbb{Z}_a \times \mathbb{Z}_b \times\mathbb{Z}_c
+    \]
+    il morfismo di anelli definito da: $f(x) = (x \bmod a, x \bmod b, x \bmod c)$, per ogni $x \in \mathbb{Z}$.
+
+    Dire chi sono $\ker(f)$ e $\operatorname{Im}(f)$.
+}{%
+    \begin{align*}
+        \ker(f) & = \{x \in \mathbb{Z}: x \equiv 0 \bmod{a}, x \equiv 0 \bmod{b}, x \equiv 0 \bmod{c}\} \\
+                & = \operatorname{MCD}\{a,b,c\}\mathbb{Z}
+    \end{align*}
+    \begin{align*}
+        \operatorname{Im}(f) & = \{(x \bmod a, x \bmod b, x \bmod c): x \in \mathbb{Z}\} \\
+                             & \cong \mathbb{Z}_{\operatorname{MCD}\{a,b,c\}}
+    \end{align*}
+}
+
+\section*{Esercizio A.9}
+\esercizio{%
+    Mostrare che i gruppi $\mathbb{Z}_{216}$ e $\mathbb{Z}_4 \times \mathbb{Z}_6 \times \mathbb{Z}_9$ non sono isomorfi (e quindi non sono isomorfi neanche come anelli).
+}{%
+    \[
+        216 = 2^3 \cdot 3^3
+    \]
+
+    $\mathbb{Z}_{216}$ ha un elemento di ordine 216
+    $\mathbb{Z}_4 \times \mathbb{Z}_6 \times \mathbb{Z}_9$ ha ordine massimo
+    $\operatorname{MCD}\{4,6,9\} = 36 < 216$
+
+    Quindi i gruppi non possono essere isomorfi.
+}
+
+\newpage
+
+\section*{Esercizio C.1}
+\esercizio{%
+    Sia $S := \{a, b, c, d\}$, $R = \{(a, b), (b, c), (c, d), (a, c), (d, d)\}$ e $\text{Var} = \{X, Y\}$.
+    Si consideri il modello $M = (S, R, V)$, dove $V(X) = \{b, c\}$ e $V(Y) = \{a, b, d\}$.
+    Determinare:
+    \begin{enumerate}
+        \item $M \models_a \Box(X \land Y) \Rightarrow \Diamond(X \lor Y)$?
+        \item $M \models_a \Diamond(X \land Y) \Rightarrow \Box(X \lor Y)$?
+        \item $M \models_a \Box\Box\Box(X \lor Y)$?
+        \item $M \models_a \Diamond\Diamond\Diamond(\neg X \land Y)$?
+        \item $M \models_b \Box X \Leftrightarrow \Diamond Y$?
+        \item $(S, R) \models \Box\Box\Box(X \lor Y)$?
+        \item $(S, R) \models \Diamond\Diamond\Diamond(\neg X \land Y)$?
+    \end{enumerate}
+}{%
+    Rappresentiamo la relazione $R$ come un grafo orientato:
+    \begin{center}
+        \begin{tikzpicture}[->]
+            \node (a) at (0,0) {$a$};
+            \node (b) at (2,0) {$b$};
+            \node (c) at (4,0) {$c$};
+            \node (d) at (6,0) {$d$};
+            \draw (a) edge (b);
+            \draw (b) edge (c);
+            \draw (c) edge (d);
+            \draw (a) edge [bend right] (c);
+            \draw (d) edge [loop right] (d);
+        \end{tikzpicture}
+    \end{center}
+    Analizziamo ogni punto:
+    \begin{enumerate}
+        \item Possiamo riscrivere la formula come:
+              \[
+                  \neg\Box(X \land Y) \lor \Diamond(X \lor Y)
+              \]
+              è sufficiente verificare che $\Diamond(X \lor Y)$ è vero, da $a$ possiamo raggiungere $b$ e $c$ che soddisfano $X \lor Y$.
+
+              Quindi $M \models_a \Box(X \land Y) \Rightarrow \Diamond(X \lor Y)$ è \textbf{vero}.
+
+        \item Stesso discorso per questa formula, la possiamo riscrivere:
+              \[
+                  \neg\Diamond(X \land Y) \lor \Box(X \lor Y)
+              \]
+              ed è facile vedere che da $a$ possiamo raggiungere sempre elementi che soddisfano $X \lor Y$.
+
+              Quindi $M \models_a \Diamond(X \land Y) \Rightarrow \Box(X \lor Y)$ è \textbf{vero}.
+
+        \item Per $\Box\Box\Box(X \lor Y)$, dobbiamo verificare che $X \lor Y$ sia vero in tutti i punti raggiungibili in 3 passi:
+              \begin{itemize}
+                  \item Da $a$: possiamo raggiungere $b$, $c$, $d$
+                  \item In ogni punto raggiungibile, $X \lor Y$ è vero
+              \end{itemize}
+              Quindi $M \models_a \Box\Box\Box(X \lor Y)$ è \textbf{vero}.
+
+        \item Per $\Diamond\Diamond\Diamond(\neg X \land Y)$:
+              \begin{itemize}
+                  \item Da $a$: possiamo raggiungere $d$ attraverso vari cammini
+                  \item $d \notin V(X)$ e $d \in V(Y)$, quindi $\neg X \land Y$ è vero in $d$
+              \end{itemize}
+              Quindi $M \models_a \Diamond\Diamond\Diamond(\neg X \land Y)$ è \textbf{vero}.
+
+        \item Riscriviamo la formula come:
+              \[
+                  (\Box X \Rightarrow \Diamond Y) \land (\Diamond Y \Rightarrow \Box X)
+              \]
+              e ancora, possiamo riscrivere come:
+              \[
+                  (\neg\Box X \lor \Diamond Y) \land (\neg\Diamond Y \lor \Box X)
+              \]
+              Possiamo verificare che, partendo da $b$, non è possibile soddisfare $ (\neg\Box X \lor \Diamond Y)$, quindi la formula è \textbf{falsa}.
+
+        \item Per la validità in $(S,R)$, dobbiamo verificare la formula per ogni valutazione possibile, chiaramente da ogni punto possiamo raggiungere un punto dove $X \lor Y$ è vero (almeno una variable è vera). Quindi $(S,R) \models \Box\Box\Box(X \lor Y)$ è \textbf{vero}.
+
+        \item Similmente, da qualsiasi punto, possiamo, in 3 step raggiungere un punto dove $\neg X \land Y$ è vero, infatti in 3 mosse possiamo sempre raggiungere $d$. Quindi $(S,R) \models \Diamond\Diamond\Diamond(\neg X \land Y)$ è \textbf{vero}.
+    \end{enumerate}
+}
+
+\section*{Esercizio C.2}
+\esercizio{%
+    Una relazione $R$ su un insieme $S$ è detta seriale se
+    $R \cap \{s\} \times S \neq \emptyset$, $\forall s \in S$ (ovvero ogni elemento ha almeno un successore).
+
+    Dimostrare che $(S, R) \models \Box F \Rightarrow \Diamond F$ se e solo se $R$ è seriale.
+}{%
+    Dimostriamo entrambe le direzioni:
+    \begin{itemize}
+        \item  ($\Rightarrow$) Supponiamo che $(S,R) \models \Box F \Rightarrow \Diamond F$ e sia $s \in S$. Consideriamo una valutazione $V$ tale che $V(F) = \emptyset$.
+
+              Se $s$ non ha successori, allora $\Box F$ è vero in $s$ ma $\Diamond F$ sarebbe falso in $s$ (non ha successori dove verificare $F$), questo contraddirebbe la validità di $\Box F \Rightarrow \Diamond F$ quindi ogni $s \in S$ deve avere almeno un successore cioè $R$ è seriale.
+
+        \item ($\Leftarrow$) Supponiamo che $R$ sia seriale. Sia $V$ una valutazione qualsiasi e $s \in S$.
+
+              Se $\Box F$ è vero in $s$, allora $F$ è vero in ogni successore di $s$, Per serialità, $s$ ha almeno un successore $t$, quindi $F$ è vero in $t$ perciò $\Diamond F$ è vero in $s$ quindi $\Box F \Rightarrow \Diamond F$ è valido
+    \end{itemize}
+}
+
+\section*{Esercizio C.3}
+\esercizio{%
+    Una relazione $R$ su un insieme $S$ è detta funzionale se
+    $|R \cap \{s\} \times S| = 1$, $\forall s \in S$. (ovvero ogni elemento ha al massimo un successore).
+
+    Dimostrare che $(S, R) \models \Box F \Leftrightarrow \Diamond F$ se e solo se $R$ è funzionale.
+}{%
+    Dimostriamo entrambe le direzioni:
+    \begin{itemize}
+        \item ($\Rightarrow$) Supponiamo che $(S,R) \models \Box F \Leftrightarrow \Diamond F$ e sia $s \in S$. Supponiamo per assurdo che $s$ abbia due successori distinti $t_1, t_2$ e consideriamo una valutazione $V$ tale che $V(F) = \{t_1\}$.
+
+              Allora $\Diamond F$ è vero in $s$ (per $t_1$) ma $\Box F$ è falso in $s$ (per $t_2$), questo contraddice la validità di $\Box F \Leftrightarrow \Diamond F$ quindi $s$ ha esattamente un successore
+
+        \item ($\Leftarrow$) Supponiamo che $R$ sia funzionale. Sia $V$ una valutazione qualsiasi e $s \in S$.
+
+              Per funzionalità, $s$ ha esattamente un successore $t$ e $\Box F$ è vero in $s$ se e solo se $F$ è vero in $t$,  $\Diamond F$ è vero in $s$ se e solo se $F$ è vero in $t$ quindi $\Box F \Leftrightarrow \Diamond F$ è valido
+    \end{itemize}
+}
+
+\section*{Esercizio C.4}
+\esercizio{%
+    Una relazione $R$ su un insieme $S$ è detta euclidea se
+    \[
+        (a, b) \in R \land (a, c) \in R \Rightarrow (b, c) \in R \quad \forall a, b, c \in S
+    \]
+    Dimostrare che $(S, R) \models \Diamond F \Rightarrow \Box\Diamond F$ se e solo se $R$ è euclidea.
+}{%
+    Dimostriamo entrambe le direzioni:
+
+    \begin{itemize}
+        \item  ($\Rightarrow$) Supponiamo che $(S,R) \models \Diamond F \Rightarrow \Box\Diamond F$ e siano $a,b,c \in S$ tali che $(a,b), (a,c) \in R$. Consideriamo una valutazione $V$ tale che $V(F) = \{c\}$.
+
+              Allora $\Diamond F$ è vero in $a$ (per $c$) e per validità, $\Box\Diamond F$ è vero in $a$. Quindi $\Diamond F$ è vero in $b$
+              cioè esiste un cammino da $b$ a un punto in $V(F) = \{c\}$ per la scelta arbitraria di $V$, deve essere $(b,c) \in R$
+
+        \item ($\Leftarrow$) Supponiamo che $R$ sia euclidea. Sia $V$ una valutazione qualsiasi e $s \in S$.
+
+              Se $\Diamond F$ è vero in $s$, esiste $t$ successore di $s$ dove $F$ è vero. Sia $u$ un qualsiasi successore di $s$. Per euclidicità, $(s,t), (s,u) \in R$ implica $(u,t) \in R$. Quindi $\Diamond F$ è vero in ogni successore di $s$ perciò $\Box\Diamond F$ è vero in $s$ quindi $\Diamond F \Rightarrow \Box\Diamond F$ è valido
+    \end{itemize}
+}
+
+\end{document}

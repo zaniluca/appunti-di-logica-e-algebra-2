@@ -1,0 +1,46 @@
+name: Build and Release PDF
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install TeX Live
+        uses: tecolicom/actions-use-apt-tools@v1.5
+        with:
+          tools: texlive-full latexmk
+          cache: true
+
+      - name: Build
+        run: make
+
+      - name: Get commit SHA
+        id: sha
+        run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: out/main.pdf
+          name: appunti-di-logica-e-algebra-2-${{ steps.sha.outputs.sha }}
+          tag_name: ${{ steps.sha.outputs.sha }}
+          draft: false
+          prerelease: false
+          body: |
+            Appunti di Logica e Algebra 2 build from commit ${{ steps.sha.outputs.sha }}
+
+            This is an automatically generated release containing the latest PDF build.

@@ -1,0 +1,124 @@
+\documentclass[10pt,a4paper,twoside]{book}
+\usepackage[italian]{babel} % Important to load it before the style file
+
+\input{style/style.tex}
+
+\usepackage[
+    left=2.5cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=3cm,
+]{geometry}
+\usepackage{subfiles}
+\usepackage{tikz-cd}
+\usepackage{multicol}
+\usepackage{marvosym} % For the \Lightning symbol
+
+% Custom commands
+\def\nicefrac#1#2{     
+    \raise.5ex\hbox{$#1$}    
+    \kern-.1em/\kern-.05em     
+    \lower.5ex\hbox{$#2$}
+}
+
+\let\Im\undefined  % We'll redefine \Im
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Id}{Id}
+% \DeclareMathOperator{\dim}{dim}
+\DeclareMathOperator{\MCD}{MCD}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\mcm}{mcm}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Var}{Var}
+
+\let\Roman\undefined % We'll redefine \Roman
+\newcommand{\Roman}[1]{
+  \textup{\uppercase\expandafter{\romannumeral#1}}
+}
+
+\begin{document}
+
+\frontmatter
+
+\pagestyle{empty}
+
+% Title page
+\hypertarget{mytitlepage}{}
+\bookmark[dest=mytitlepage,level=chapter]{Titolo}
+
+\vspace*{\fill}
+\begin{center}
+    {\large \textsc{Appunti di}}\\
+
+    \vspace*{0.4cm}
+
+    {\Huge
+        \textsc{Logica e Algebra 2}}\\
+
+    \vspace*{1cm}
+
+    {\large Dalle lezioni del prof. Paolo Sentinelli}\\
+
+    \vspace*{1cm}
+
+    Autori\\
+    \vspace*{0.1cm}
+    \textsc{Lorenzo Bardelli}\\
+    \textsc{Luca Zani}\\
+    \textsc{Pietro Pizzoccheri}\\
+
+    \vspace*{1cm}
+
+    Politecnico di Milano\\A.Y. 2024/2025
+\end{center}
+\vspace*{\fill}
+\clearpage
+
+% Copyright
+\hypertarget{mycopyright}{}
+\bookmark[dest=mycopyright,level=chapter]{Copyright}
+\input{copyright}
+\clearpage
+
+% Contents
+\cleardoublepage
+\pagestyle{toc}
+\hypertarget{mytoc}{}
+\bookmark[dest=mytoc,level=chapter]{\contentsname}
+\tableofcontents
+\cleardoublepage
+
+\pagestyle{fancy}
+\mainmatter
+
+% September Notes
+\subfile{lectures/2024_09_19.tex}
+\subfile{lectures/2024_09_20.tex}
+\subfile{lectures/2024_09_26.tex}
+\subfile{lectures/2024_09_27.tex}
+% October Notes
+\subfile{lectures/2024_10_03.tex}
+\subfile{lectures/2024_10_04.tex}
+\subfile{lectures/2024_10_17.tex}
+\subfile{lectures/2024_10_18.tex}
+\subfile{lectures/2024_10_24.tex}
+\subfile{lectures/2024_10_25.tex}
+% November Notes
+\subfile{lectures/2024_11_07.tex}
+\subfile{lectures/2024_11_08.tex}
+\subfile{lectures/2024_11_14.tex}
+\subfile{lectures/2024_11_16.tex}
+\subfile{lectures/2024_11_21.tex}
+\subfile{lectures/2024_11_22.tex}
+\subfile{lectures/2024_11_28.tex}
+\subfile{lectures/2024_11_29.tex}
+% December Notes
+\subfile{lectures/2024_12_05.tex}
+\subfile{lectures/2024_12_06.tex}
+
+\cleardoublepage
+
+\end{document}

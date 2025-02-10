@@ -1,0 +1,169 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\begin{definition}[Identità]
+    Sia $\cdot$ un'operazione su $X$. Un elemento $e \in X$ tale che
+    \[
+        e \cdot x = x \cdot e = x \qquad \forall x \in X
+    \]
+    è detto \textbf{elemento neutro} o \textbf{identità}.
+\end{definition}
+\begin{remark}[Unicità dell'identità]
+    Se $e,e' \in X$ sono due identità, allora:
+    \[
+        e = e \cdot e' = e'
+    \]
+    l'identità è unica.
+\end{remark}
+
+\section{Monoidi e Gruppi}
+
+\begin{definition}[Monoide]
+    Un insieme $X$ con un'operazione \textbf{associativa} e un'\textbf{identità} è detto \textbf{monoide}.
+\end{definition}
+
+\begin{example}
+    \
+    \begin{itemize}
+        \item $\mathbb{N,Z,Q,R,C}$ con l'addizione e identità $0$ sono monoidi.
+        \item $\mathbb{N,Z,Q,R,C}$ con la moltiplicazione e identità $1$ sono monoidi.
+        \item $\mathcal{P} (X)$ con $\cap$  e come identità l'insieme $X$ è un monoide.
+        \item $\mathcal{P} (X)$ con $\cup$  e come identità l'insieme vuoto è un monoide.
+        \item $F(X):= \{f: X \rightarrow X\}$ con la composizione "$\circ$" e come identità la funzione identità ($\Id_X$) è un monoide.
+    \end{itemize}
+\end{example}
+
+\begin{definition}[Invertibilità e Inverso]
+    Sia $X$ un monoide. Un elemento $x \in X$ è detto \textbf{invertibile} se esiste $y \in X$ tale che
+    \[
+        x \cdot y = y \cdot x = e
+    \]
+    dove $e$ è l'identità di $X$. L'elemento $y$ è detto \textbf{inverso} di $x$.
+\end{definition}
+\begin{remark}[Unicità dell'inverso]
+    Se $x \in X$ è invertibile, \textbf{il suo inverso è unico} e lo indichiamo con $x^{-1}$.
+\end{remark}
+
+\begin{remark}
+    L'identità del monoide è sempre invertibile e il suo inverso è l'identità stessa.
+\end{remark}
+
+\begin{example}
+    \
+    \begin{itemize}
+        \item L'insieme degli elementi invertibili di $(\mathbb{N},+)$ è $\{0\}$.
+        \item Linsieme degli elementi invertibili di $(\mathbb{Z},+)$ è $\mathbb{Z}$, di $(\mathbb{Q},+)$ è $\mathbb{Q}$, di $(\mathbb{R},+)$ è $\mathbb{R}$, di $(\mathbb{C},+)$ è $\mathbb{C}$.
+        \item L'insieme degli elementi invertibili di $(\mathbb{N},\cdot)$ è $\{1\}$, di $(\mathbb{Z},\cdot)$ è $\{1,-1\}$, di $(\mathbb{Q},\cdot)$ è $\mathbb{Q} \setminus \{0\}$, di $(\mathbb{R},\cdot)$ è $\mathbb{R} \setminus \{0\}$, di $(\mathbb{C},\cdot)$ è $\mathbb{C} \setminus \{0\}$.
+        \item L'insieme degli elementi invertibili di $F(X) = \{f: X \rightarrow X\}$ è l'insieme delle funzioni invertibili.
+    \end{itemize}
+\end{example}
+
+\begin{definition}[Gruppo]
+    Un monoide $X$ i cui elementi sono tutti \textbf{invertibili} è detto \textbf{gruppo}.
+
+    Se l'operazione è \textbf{commutativa}, il gruppo è detto commutativo o \textbf{abeliano}.
+\end{definition}
+
+\newpage
+
+\begin{example}
+    \
+    \begin{itemize}
+        \item ($\mathcal{P}(x) ,\Delta $) è un gruppo abeliano. L'identità è l'insieme vuoto e l'inverso di $A \in \mathcal{P}(x)$ è $A$ stesso. ($A^2 = \varnothing,  \forall A \subseteq X $)
+        \item ($\mathbb{Z},+$), ($\mathbb{Q},+$), ($\mathbb{R},+$), ($\mathbb{C},+$) sono gruppi abeliani
+        \item ($\mathbb{Q}\setminus \{0\}, \cdot$), ($\mathbb{R}\setminus \{0\}, \cdot$), ($\mathbb{C}\setminus \{0\}, \cdot$) sono gruppi abeliani
+    \end{itemize}
+\end{example}
+
+\begin{definition}[Sottomonoide]
+    Se  $X$ è un monoide con identità $e$ e operazione $\cdot$, un \textbf{sottomonide} è un sottoinsieme $Y \subseteq X$ tale che:
+    \begin{enumerate}
+        \item $e \in Y$ (Sottomonoide contiene l'identità)
+        \item $a\cdot b \in Y$, $\forall a,b \in Y$ (Chiusura rispetto all'operazione)
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Sottogruppo]
+    Se $G$ è un gruppo con operazione $\cdot$, un \textbf{sottogruppo} è un sottoinsieme $H \subseteq G$ tale che:
+    \begin{enumerate}
+        \item $h^{-1} \in H$, $\forall h \in H$ (Tutti gli elementi sono invertibili)
+        \item $h \cdot k \in H$, $\forall h,k \in H$ (Chiusura rispetto all'operazione)
+    \end{enumerate}
+
+    \begin{note}
+        Dato un gruppo $X$ con identità $e$. Il gruppo $\{e\}$ è detto \textbf{sottogruppo banale di $X$}.
+    \end{note}
+\end{definition}
+
+\begin{example}
+    \
+    \begin{itemize}
+        \item Con l'addizione, $\{0\}$ è un sottomonoide di $\mathbb{N}$. $\{0\}$ è anche sottogruppo banale.
+        \item Con la moltiplicazione ($\cdot$) abbiamo la catena di sottomonoidi
+              \[
+                  (\{1\}, \cdot ) \subseteq (\mathbb{N}, \cdot ) \subseteq ( \mathbb{Z}, \cdot ) \subseteq (\mathbb{Q}, \cdot ) \subseteq (\mathbb{R}, \cdot ) \subseteq ( \mathbb{C}, \cdot )
+              \]
+              e di sottogruppi
+              \[
+                  (\{1\}, \cdot ) \subseteq (\mathbb{Q}\setminus \{0\}, \cdot ) \subseteq (\mathbb{R} \setminus \{0\}, \cdot ) \subseteq (\mathbb{C}\setminus \{0\}, \cdot )
+              \]
+    \end{itemize}
+\end{example}
+
+\begin{definition}[Sottomonoide e Sottogruppo generati]
+    Sia $(X, \cdot)$ un monoide con $e$ identità e $S \subseteq X$ un sottoinsieme, l'insieme
+    \[
+        \boxed{
+            \langle S \rangle = \{ x_1 \cdot x_2 \cdot \ldots \cdot x_n \mid n \in \mathbb{N}, x_1,x_2,\ldots,x_n \in S \}
+        }
+    \]
+    è detto \textbf{sottomonoide generato da $S$} ed è il più piccolo sottomonoide di $X$ che contiene $S$.
+    \begin{note}
+        $n = 0$ è ammesso, in tal caso $\langle S \rangle = \{e\}$.
+    \end{note}
+    In semplice è l'insieme generato utilizzando (eventualmente più volte) l'operazione $\cdot$ su $S$.
+
+    Se $X$ è un gruppo, $\langle S \rangle$ è detto \textbf{sottogruppo generato da $S$}.
+\end{definition}
+\begin{remark}
+    L'intersezione di sottomonoidi (o sottogruppi) è un sottomonide (o sottogruppo).
+\end{remark}
+
+\begin{example}
+    \
+    \begin{itemize}
+        \item $S = \{1\} \subseteq  (\mathbb{N}, +)$. Allora $\langle S \rangle = \langle \{1\} \rangle = \{0,1,2,\ldots\} = \mathbb{N}$
+        \item Sia $S:= \{p \in \mathbb{N} : p \text{ è primo}\} \subseteq (\mathbb{N}, \cdot)$. Allora $\langle S \rangle = \mathbb{N} \setminus \{0\}$
+        \item $S = \{0,1\} \subseteq (\mathbb{N} , \cdot)$. Allora $\langle S \rangle = S = \{0,1\}$
+        \item sia $S = \{1\} \subseteq  (\mathbb{Z}, +)$. il sottogruppo generato da $S$ è $\langle S \rangle  = \mathbb{Z}$
+        \item uno spazio vettoriale $V$ è un gruppo abeliano se consideriamo l'operazione di addizione fra vettori. Prendiamo $V=\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$. Sia $v = (1,1) \in \mathbb{R}^2$. Il sottogruppo $\langle \{v\} \rangle = \{(n,n): n \in \mathbb{Z}\}$ è un sottogruppo proprio del sottospazio generato da $\{v\}$. Sia $v_1 = (1,0)$ ed $v_2 = (0,1)$, allora il sottogruppo $\langle \{v_1,v_2\} \rangle$ è $\mathbb{Z} \times \mathbb{Z} \subseteq  \mathbb{R} \times \mathbb{R}$
+    \end{itemize}
+\end{example}
+
+\begin{definition}[Prodotto diretto]
+    Siano $M_1 , M_2$ monoidi con identità $e_1 , e_2$ rispettivamente. Si definisce \textbf{prodotto diretto di $M_1$ e $M_2$} il monoide $M_1 \times M_2$ la cui identità è $(e_1,e_2)$ e l'operazione è definita come:
+    \[
+        (a_1,b_1)(a_2,b_2) = (a_1 a_2, b_1 b_2) \qquad \forall a_1, a_2 \in M_1, b_1, b_2 \in M_2
+    \]
+    analogamente si definisce prodotto diretto di gruppi dove, dati due gruppi $G_1$ e $G_2$ l'inverso di una coppia $(a,b) \in G_1 \times G_2$ è $(a,b)^{-1} = (a^{-1},b^{-1})$.
+\end{definition}
+
+\section{Morfismi}
+\begin{definition}[Morfismo di Monoidi]
+    Siano $(M_1, \cdot)$ e $(M_2, \ast)$ monoidi con identità $e_1$ e $e_2$. Una funzione $f : M_1 \rightarrow M_2$ è un \textbf{morfismo di monoidi} se:
+    \begin{enumerate}[label=(\roman*)]
+        \item $f(e_1) = e_2$
+        \item $f(x\cdot y) = f(x) \ast f(y) \qquad \forall x,y \in M_1$
+    \end{enumerate}
+    Analogamente si definisce il morfismo di gruppi.
+\end{definition}
+
+\begin{definition}[Nucleo]
+    Il \textbf{nucleo} di un morfismo di monoidi $f: M_1 \rightarrow M_2$ è il sottomonoide di $M_1$ definito come
+    \[
+        \boxed{
+            \ker(f):= \{x \in M_1 : f(x) = e_2\}
+        }
+    \]
+\end{definition}
+\end{document}

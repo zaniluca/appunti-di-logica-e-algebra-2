@@ -1,0 +1,147 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+Inseriamo ora un veloce esempio che ci servirà per il prossimo teorema.
+\begin{example}
+    Sia $f: (G_1, +) \rightarrow (G_2, +)$ un morfismo di gruppi e sia $H \subseteq G_2$ un sottogruppo. Allora
+    \[
+        f^{-1}(H) := \{g \in G_1 : f(g) \in H\} \subseteq G_1
+    \]
+    è un sottogruppo di $G_1$. Infatti:
+    \begin{enumerate}[label=\roman*)]
+        \item \textbf{Chiusura elemento neutro:} Poichè $f$ è un morfismo di gruppi, $f(e_1) = e_2$, dato che $H \subseteq G_2$ è un sottogruppo contiene necessariamente l'elemento neutro $e_2$, quindi $f(e_1) \in H \implies e_1 \in f^{-1}(H)$.
+        \item \textbf{Chiusura operazione:} Siano $g_1, g_2 \in f^{-1}(H)$, cioè $f(g_1), f(g_2) \in H$. Allora
+              \[
+                  f(g_1) + f(g_2) = f(g_1 + g_2) \in H
+              \]
+              questo implica che $g_1 + g_2 \in f^{-1}(H)$.
+        \item \textbf{Chiusura inverso:} Sia $g \in f^{-1}(H)$, cioè $f(g) \in H$. Allora
+              \[
+                  f(g^{-1}) = f(g)^{-1} \in H
+              \]
+              e quindi $g^{-1} \in f^{-1}(H)$.
+    \end{enumerate}
+\end{example}
+Nel prossimo teorema verrà applicato rispetto a $G_1 = \mathbb{Z}$ per far vedere che la preimmagine è un sottogruppo di $\mathbb{Z}$ e quindi è della forma $n \mathbb{Z}$.
+
+\begin{theorem}[di struttura per i gruppi ciclici]
+    \label{th:1.44}
+    Sia $G$ un gruppo ciclico. Allora ogni sottogruppo di $G$ è ciclico.
+\end{theorem}
+
+\begin{proof}
+    Sia $g \in G$ tale che $G = \langle g \rangle$. La funzione $\varphi: (\mathbb{Z} , +) \rightarrow (G, \cdot)$ definita da $\varphi(n) = g^n$, $\forall n \in \mathbb{Z}$ è un morfismo suriettivo di gruppi.
+    \[
+        \varphi(n) = g^n = \begin{cases*}
+            \underbrace{g\cdot g \cdot \ldots \cdot g}_{n \text{ volte}}                 & \text{se } n > 0 \\
+            e \text{ (identità)}                                                         & \text{se } n = 0 \\
+            \underbrace{g^{-1} \cdot g^{-1} \cdot \ldots \cdot g^{-1}}_{n \text{ volte}} & \text{se } n < 0
+        \end{cases*}
+    \]
+    Avendo ipotizzato che $G$ sia ciclico abbiamo che $\varphi$ è \textbf{suriettivo}.
+    $G$ è generato da $g$, questo significa che ogni elemento di $G$ è una potenza di $g$ quindi è necessariamente nell’immagine di $\varphi$.
+    \begin{enumerate}[label=\alph*)]
+        \item $G$ è \textbf{infinito}: allora
+              \[
+                  \ker(\varphi) = \{n \in \mathbb{Z} : \varphi(n) = e\} = \{n \in \mathbb{Z} : g^n = e\}  = \{0\}
+              \]
+              e quindi $\varphi$ è \textbf{iniettivo}. Dunque $\varphi$ è un isomorfismo di gruppi.
+
+              Poichè i sottogruppi di $\mathbb{Z}$ sono della forma $n \mathbb{Z}$ e sono ciclici, allora anche i sottogruppi di $G$ sono ciclici.
+        \item $G$ è \textbf{finito}: sia $H \subseteq G$ un sottogruppo. Allora
+              \[
+                  \varphi^{-1}(H) := \{m \in \mathbb{Z} : \varphi(m) \in H\} \subseteq \mathbb{Z}
+              \]
+              è un sottogruppo di $\mathbb{Z}$, quindi è del tipo $ \varphi^{-1}(H) = n \mathbb{Z}$ per qualche $n \in \mathbb{N}$ tale che $\varphi^{-1}(H)= \langle n \rangle$.
+
+              La restrizione
+              \[
+                  \varphi \big|_{\varphi^{-1}(H)}:  n \mathbb{Z} \rightarrow H \qquad \Im\left(\varphi \big|_{\varphi^{-1}(H)}\right) = H
+              \]
+              è un morfismo suriettivo di gruppi, quindi ogni elemento $h$ è del tipo
+              \[
+                  h = \varphi(m) = \varphi(kn) = \varphi(\underbrace{n+n+\ldots+n}_{k \text{ volte}}) = \varphi(n) \varphi(n) \ldots \varphi(n) = [\varphi(n)]^k \qquad \forall k \in \mathbb{Z}, h \in H
+              \]
+              quindi $H = \langle \varphi(n) \rangle$.
+    \end{enumerate}
+
+    \begin{note}
+        Perchè distinguiamo tra $G$ finito e infinito? Se $G$ è ciclico e \textbf{finito}, diciamo che $\abs{G} = m$, cioè $G = \langle g \rangle = \{e_G, g, g^2, \ldots, g^{m-1}\}$ con $g^m = e_G$, cioè esiste un intero non nullo che viene mandato all'elemento neutro.
+        \[
+            \ker (\varphi) = \{n \in \mathbb{Z} : g^n = e_G\}
+        \]
+
+        In particolare sappiamo che ogni multiplo di $m$ soddisfa questa proprietà, quindi $\ker(\varphi) = m \mathbb{Z}$.
+
+        ($\mathbb{Z}$ è infinito, quindi gli esponenti di $g$, ovvero $g^n$ continueranno a ripetersi in modo ciclico una volta raggiunto il numero massimo di elementi in $G$).
+    \end{note}
+\end{proof}
+
+\begin{corollary}
+    Essendo $\mathbb{Z}_n$ ciclico, dal teorema \ref{th:1.44}, l'insieme dei sottogruppi di $\mathbb{Z}_n$, $n \in \mathbb{N}$ è formato da sottogruppi ciclici:
+    \[
+        \boxed{
+            \{\langle \overline{m} \rangle : \overline{m} \in \mathbb{Z}_n \}
+        }
+    \]
+\end{corollary}
+
+\begin{proposition}
+    Sia $n \in \mathbb{N}$ e sia $d \mid n$ (d divide n).
+
+    Allora esiste al più un unico sottogruppo di $\mathbb{Z}_n$ di cardinalità $d$.
+\end{proposition}
+
+\begin{proof}\
+    \begin{itemize}
+        \item (Esistenza): Sia $d \mid n$ ($n = kd$) allora da $\abs{\langle \overline{m} \rangle} = \frac{\mcm \{{m,n}\}}{m}$. poichè $d \mid n$ allora $n$ è multiplo di $\frac{n}{d}$, quindi
+              \[
+                  \left|\left \langle \overline{\nicefrac{n}{d}}\right \rangle \right| = \frac{\mcm \{\frac{n}{d}, n\}}{\frac{n}{d}} = \frac{n}{\frac{n}{d}} = d
+              \]
+              Abbiamo trovato un sottogruppo di ordine $d$, quindi ne esiste almeno uno.
+        \item (Unicità): Sia $H \subseteq \mathbb{Z}_n$ sottogruppo tale che $|H| = d$. Si considerino le proiezioni canoniche
+              \[
+                  \mathbb{Z} \xrightarrow{\pi_1} \mathbb{Z}_n \xrightarrow{\pi_2} \nicefrac{\mathbb{Z}_n }{H}
+              \]
+              Poiché la preimmagine
+              \[
+                  \pi^{-1}_1 (H) = \{m \in \mathbb{Z} : \pi_1 (m) \in H\}
+              \]
+              è un sottogruppo di $\mathbb{Z}$, allora esiste $k \in \mathbb{N} $ tale che $\pi^{-1}_1(H) = k \mathbb{Z}$ (tutti i sottogruppi di $\mathbb{Z}$ sono in questa forma).
+
+              Guardiamo $\ker(\pi_2 \circ \pi_1)$
+              \[
+                  \ker(\pi_2 \circ \pi_1) = \{m \in \mathbb{Z} : (\pi_2 \circ \pi_1)(m) = [\overline{0}]\}
+              \]
+              \[
+                  [\overline{0}] = \overline{0} + h \qquad  h \in H
+              \]
+              Ma l'elemento neutro è proprio la classe $H$, quindi la condizione diventa
+              \[
+                  \ker(\pi_2 \circ \pi_1) = \{m \in \mathbb{Z} : (\pi_2 \circ \pi_1)(m) \in H \}
+              \]
+              ma quindi solo gli elementi $h \in \mathbb{Z}_n$ t.c. $h \in H$ sono mandati da $\pi_2$ nell'elemento neutro
+              \[
+                  [\overline{0}] = h' + h \qquad  h,h' \in H
+              \]
+              quindi $\ker(\pi_2 \circ \pi_1) = \pi^{-1}_1 (H)$ cioè gli elementi che da $\pi_1$ vengono mandati in $H \subseteq \mathbb{Z}_n$.
+
+              Essendo $\pi_2 \circ \pi_1$ un morfismo suriettivo di gruppi (le proiezioni canoniche sono surriettive) ho $\Im(\pi_2 \circ \pi_1) = \nicefrac{\mathbb{Z}_n }{H}$ e quindi per il teorema di isomorfismo
+              \[
+                  \nicefrac{\mathbb{Z}_n }{H} \overset{\substack{\text{teorema di}\\\text{isomorfismo}}}{\simeq} \nicefrac{\mathbb{Z}}{\ker(\pi_2 \circ \pi_1)} = \nicefrac{\mathbb{Z} }{\pi^{-1}(H)} = \nicefrac{\mathbb{Z} }{k \mathbb{Z} }= \mathbb{Z}_k
+              \]
+              Quindi
+              \[
+                  |\mathbb{Z}_k| = k =|\nicefrac{\mathbb{Z}_n }{H}| = \nicefrac{|\mathbb{Z}_n |}{|H|} = \frac{n}{d}
+              \]
+              ossia $k$ è univocamente determinato, e allora $H = \pi_1 (k \mathbb{Z} ) = \langle \overline{\nicefrac{n}{d}} \rangle$ è univocamente determinato perchè dobbiamo avere $k = \frac{n}{d}$.
+    \end{itemize}
+\end{proof}
+
+\begin{example}
+    I sottogruppi di $\mathbb{Z}_{899}$ sono quattro, perché $899 = 31 \cdot 29$, quindi c'è un sottogruppo di
+    cardinalità 1 (il sottogruppo banale), uno di cardinalità 31, uno di cardinalità 29 e $\mathbb{Z}_{899}$.
+
+    Sono: $\{\{0\} , \langle \overline{29} \rangle , \langle \overline{31} \rangle , \mathbb{Z}_{899}\}$.
+\end{example}
+\end{document}

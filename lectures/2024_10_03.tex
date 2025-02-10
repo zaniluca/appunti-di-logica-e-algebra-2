@@ -1,0 +1,269 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\begin{theorem}
+    \label{th:1.38}
+    Sia $f : G_1 \rightarrow G_2$ un morfismo di gruppi. Allora:
+    \[
+        \text{$f$ è iniettivo} \iff \ker(f) = \{e_1\}
+    \]
+    \begin{note}
+        Per i morfismi di monoidi vale invece:
+        \[
+            \text{$f$ è iniettivo} \implies \ker(f) = \{e_1\}
+        \]
+    \end{note}
+\end{theorem}
+
+\begin{proof}\
+    \begin{itemize}
+        \item ($\implies$) Sia $f$ iniettivo. Sia $x \in \ker(f)$, allora $f(x) = e_2$ (per la definizione di $\ker$) e quindi, poiché anche $f(e_1) = e_2$ (per la condizione di morfismo), si ha che $x = e_1$ per l'ipotesi di iniettività.
+
+        \item ($\impliedby$) Sia $\ker(f) = \{e_1\}$ e siano $x,y \in G_1$ tali che $f(x) = f(y)$.
+
+              Allora:
+              \[
+                  f(x)f(y^{-1}) = e_2 \implies  f(xy^{-1}) = e_2 \implies  xy^{-1} \in \ker(f) \implies xy^{-1} = e_1 \implies x=y
+              \]
+              Cioè $f$ è iniettivo.
+    \end{itemize}
+\end{proof}
+
+\begin{example}
+    \
+    \begin{itemize}
+        \item $G = \mathbb{Z}_4 = \{\overline{0}, \overline{1}, \overline{2}, \overline{3}\}$, \
+              \begin{itemize}
+                  \item $\langle \overline{0} \rangle = \{\overline{0}\}$ sottogruppo banale $\simeq \mathbb{Z}_1$
+                  \item $\langle \overline{1} \rangle = \mathbb{Z}_4$
+                  \item $\langle \overline{2} \rangle = \{\overline{0}, \overline{2}\} \simeq \mathbb{Z}_2$ ($2+2=0$)
+                  \item $\langle \overline{3} \rangle = \mathbb{Z}_4$ ($3 , 3+3=6=2, 3+2=5=1, 3+1=4=0$)
+              \end{itemize}
+              I sottogruppi di $\mathbb{Z}_4$ possono averer cardinalità $1,2,4$. L'insieme
+              dei sottogruppo di $\mathbb{Z}_4$ è $\{\{\overline{0}\}, \{\overline{0}, \overline{2}\},
+                  \{\overline{0}, \overline{1}, \overline{2}, \overline{3}\}= \mathbb{Z}_4\}$
+        \item $G = \mathbb{Z}_6 = \{\overline{0}, \overline{1}, \overline{2}, \overline{3}, \overline{4}, \overline{5}\}$, \
+              \begin{itemize}
+                  \item $\langle \overline{0} \rangle = {\overline{0}}$ sottogruppo banale $\simeq \mathbb{Z}_1$
+                  \item $\langle \overline{1} \rangle = \mathbb{Z}_6$
+                  \item $\langle \overline{2} \rangle = \{\overline{0}, \overline{2}, \overline{4}\} \simeq \mathbb{Z}_3$
+                  \item $\langle \overline{3} \rangle = \{\overline{0}, \overline{3}\} \simeq \mathbb{Z}_2$
+                  \item $\langle \overline{4} \rangle = \{\overline{0}, \overline{2}, \overline{4}\} \simeq \mathbb{Z}_3$
+                  \item $\langle \overline{5} \rangle = \mathbb{Z}_6$
+              \end{itemize}
+              I sottogruppi di $\mathbb{Z}_6$ possono averer cardinalità $1,2,3,6$. L'insieme dei sottogruppo di $\mathbb{Z}_6$ è $\{\{\overline{0}\}, \{\overline{0}, \overline{2}, \overline{4}\}, \{\overline{0}, \overline{3}\}, \{\overline{0}, \overline{1}, \overline{2}, \overline{3}, \overline{4}, \overline{5}\}= \mathbb{Z}_6\}$
+    \end{itemize}
+\end{example}
+
+Trattiamo ora il caso generale: consideriamo il gruppo
+\[
+    \mathbb{Z}_n = (\{\overline{0},\overline{1},\ldots,\overline{n-1}\},+) \qquad n \in \mathbb{N}
+\]
+Sia $m \in \mathbb{N}$, $m < n$.
+
+\begin{itemize}
+    \item \textbf{Caso Base}: se $m=0$, $\langle \overline{0} \rangle = \{\overline{0}\}$ perchè sommando $\overline{0}$ a se stesso ottengo solo $\overline{0}$.
+    \item \textbf{Caso Generale}: se $m > 0$, vogliamo determinare il sottogruppo generato da $\overline{m}$ ossia
+          \[
+              \langle \overline{m} \rangle = \{\overline{m},\overline{2m},\ldots\}
+          \]
+          Il numero di elementi distinti di questo insieme è l'ordine del sottogruppo $\langle \overline{m} \rangle$, cioè il \textbf{minimo} intero $z$ tale che
+          \[
+              \overline{zm} = \overline{0}
+          \]
+          Questo significa che $zm$ è multiplo di $n$, ossia $zm$ è il \textbf{minimo multiplo comune} tra $m$ e $n$, quindi:
+          \[
+              zm = \mcm \{m,n\} \implies z = \frac{\mcm \{m,n\}}{m}
+          \]
+\end{itemize}
+Dimostriamo ora che $z$ è il più piccolo valore per il quale $\overline{zm} = \overline{0}$.
+
+\begin{proof}
+    Ipotizziamo per assurdo che esista $1 \leq i < z$ tale che $\overline{im} = \overline{0}$.
+
+    Allora $im$ dovrebbe essere multiplo di $n$. Ma per definizione di $z$ sappiamo che
+    \[
+        zm = \mcm \{m,n\}
+    \]
+    e dato che $i < z$ si ha che $im < zm$ e quindi $im$ non può essere multiplo di $n$ perchè $zm$ è il minimo multiplo comune tra $m$ e $n$.
+
+    Dunque $1 \leq i < z$, $\overline{im} \neq \overline{0}$, quindi $\overline{m}$ torna a zero solo dopo $z$ iterazioni.
+\end{proof}
+Dunque:
+\[
+    \boxed{
+        \abs{\langle \overline{m} \rangle} = z = \frac{\mcm \{m,n\}}{m}
+    }
+\]
+In particolare
+\[
+    \langle \overline{m} \rangle = \mathbb{Z}_n \iff \abs{\langle \overline{m} \rangle} = \abs{\mathbb{Z}_n} \iff \frac{\mcm \{m,n\}}{m} = n \iff \mcm \{m,n\} = mn \iff m \text{ e } n \text{ sono coprimi}
+\]
+
+Ossia \underline{l'insieme $\{\overline{m}\}$ genera il gruppo $\mathbb{Z}_n$ sse $m$ e $n$ sono coprimi} ($\MCD \{m,n\}=1$).
+
+\begin{definition}[Funzione di Eulero]
+    La funzione definita da
+    \[
+        \varphi : \mathbb{N} \setminus \{0\} \rightarrow \mathbb{N} \setminus \{0\} \quad \varphi(n) := \left|\{m \in \mathbb{N} \setminus \{0\} : m < n \text{ e } \MCD \{m,n\} = 1\}\right|
+    \]
+    è detta \textbf{funzione di Eulero}.
+
+    Quindi ci sono $\varphi(n)$ elementi $\overline{m}$ tali che $\langle \overline{m} \rangle = \mathbb{Z}_n$.
+\end{definition}
+
+\begin{example}\
+    $\varphi(6) = 2$ perché solo $1$ e $5$ sono coprimi con $6$ (e $1$ e $5$ generano $\mathbb{Z}_6$).
+\end{example}
+
+\begin{proposition}
+    L'insieme dei sottogruppi di $(\mathbb{Z} ,+)$ è
+    \[
+        \boxed{
+            \{n \mathbb{Z} : n \in \mathbb{N} \}
+        }
+    \]
+\end{proposition}
+
+\begin{proof}
+    Sia $H \subseteq \mathbb{Z} $ un sottogruppo non banale (Se $H$ banale allora $H = 0\mathbb{Z}$).
+    Sia $k := \min (H_{>0})$ dove
+    \[
+        H_{>0} := \{h \in H : h > 0\}
+    \]
+    Sia $h \in H_{>0}, h \neq k$. Allora $h > k$ e scrivendolo secondo la divisione euclidea dove $n$ è il quoziente della divisione $\frac{h}{k}$ e $r$ il resto:
+    \[
+        h = nk + r \qquad 0 \leq r < k \qquad n \in \mathbb{N}, h,k,r \in \mathbb{Z},
+    \]
+    Se avessimo $r \neq 0$ allora $r$ sarebbe in $H_{>0}$ e $r < k$ che contraddirebbe la definizione di $k$ data inzialmente.
+
+    L'unico modo per avere $0 \leq r < k$ senza invalidare la minimalità di $k$ è che $r \notin H_{>0}$, cioè $r = 0$.
+
+    Dunque:
+    \[
+        h = nk + 0 = nk
+    \]
+    Quindi tutti i sottogruppi non banali in $\mathbb{Z}$ sono della forma $h = nk$ dove $n \in \mathbb{N}$, $k \in \mathbb{Z}$.
+\end{proof}
+
+\begin{definition}[Gruppo ciclico]
+    Un gruppo $G$ è detto \textbf{ciclico} se esiste $g \in G$ tale che $\langle g \rangle = G$.
+    \begin{note}\
+        \begin{itemize}
+            \item Un gruppo ciclico è anche abeliano.
+            \item Se $\abs{G} = p$ con $p$ primo, allora $G$ è ciclico.
+        \end{itemize}
+    \end{note}
+\end{definition}
+\begin{example}
+    \
+    \begin{itemize}
+        \item $\mathbb{Z} = \langle 1 \rangle$ è ciclico
+        \item $\mathbb{Z}_n = \langle \overline{1} \rangle$ è ciclico
+        \item $\mathbb{Z} \times \mathbb{Z} = \langle (1,0), (0,1) \rangle$ \underline{non} è ciclico,
+
+              infatti in $\mathbb{Z} \times \mathbb{Z} $, se $(a,b) \in \mathbb{Z} \times \mathbb{Z} $
+              \[
+                  \langle (a,b) \rangle = \{(ka,kb) : k \in \mathbb{Z} \} = \{(x,y) : a \text{ divide } x,b \text{ divide } y\} \subsetneq \mathbb{Z} \times \mathbb{Z}
+              \]
+        \item $\mathbb{Z}_2 \times \mathbb{Z}_2$ \underline{non} è ciclico, infatti, in $\mathbb{Z}_2 \times \mathbb{Z}_2$ si ha:
+              \begin{itemize}
+                  \item $\langle (\overline{0},\overline{0}) \rangle = \{(\overline{0},\overline{0})\}$
+                  \item $\langle (\overline{0}, \overline{1}) \rangle = \{\overline{0}\} \times \mathbb{Z}_2$
+                  \item  $\langle (\overline{1}, \overline{0}) \rangle = \mathbb{Z}_2 \times \{\overline{0}\}$
+                  \item $\langle (\overline{1}, \overline{1}) \rangle = \{(\overline{0},\overline{0}),(\overline{1},\overline{1})\}$
+              \end{itemize}
+              Quindi nessun elemento di $\mathbb{Z}_2 \times \mathbb{Z}_2$ genera $\mathbb{Z}_2 \times \mathbb{Z}_2$.
+    \end{itemize}
+\end{example}
+
+\begin{theorem}[di isomorfismo per gruppi abeliani]
+    Sia $f: G_1 \rightarrow G_2$ un morfismo di gruppi abeliani. Allora esiste un morfismo iniettivo $\varphi : \nicefrac{G_1}{\ker \varphi} \rightarrow G_2$ tale che il seguente diagramma è commutativo:
+    \begin{equation*}
+        \begin{tikzcd}
+            G_1 \arrow[r, "f"] \arrow[d, "\pi"'] & G_2 \\
+            \nicefrac{G_1}{\ker(f)} \arrow[ru, "\varphi"']
+        \end{tikzcd}
+    \end{equation*}
+    In particolare, $\nicefrac{G_1}{\ker(f)} \simeq \Im(f)$.
+    \begin{note}\
+        \begin{itemize}
+            \item "Commutativo" cioè $f = \varphi \circ \pi$
+            \item $\varphi ([g]) = f(g)$
+            \item Se $f$ è anche suriettiva allora $\nicefrac{G_1}{\ker(f)} \simeq G_2$
+        \end{itemize}
+    \end{note}
+\end{theorem}
+
+\begin{proof}\
+    \begin{itemize}
+        \item  L'assegnazione $[g] \mapsto f(g), \forall g \in  G$, definisce una funzione
+              \[
+                  \varphi : \nicefrac{G_1}{\ker(f)} \rightarrow G_2
+              \]
+              vediamo come questa funzione è ben definita: se $g' \sim g$, ossia $[g]  = [g']$ allora vogliamo $\varphi([g]) = \varphi([g'])$.
+
+              Se $[g] = [g']$ per definizione dell'insieme quoziente significa che esiste un elemento $h \in \ker(f)$ tale che
+              \[
+                  g = g' + h \qquad h \in \ker(f)
+              \]
+              Dunque, applicando $f$ ad entrambi i membri dell'equazione otteniamo
+              \[
+                  f(g) = f(g' + h) = f(g') + \underbrace{f(h)}_{0_2} = f(g')
+              \]
+              Poichè $h \in \ker(f)$, per definizione di nucleo si ha $f(h) = 0_2$ (identità di $G_2$). Abbiamo ottenuto che $\varphi([g]) = \varphi([g'])$ quindi \textbf{la funzione è ben definita}.
+
+        \item Se $f$ è morfismo di gruppi, anche $\varphi$ lo è, infatti per essere morfismo deve valere
+              \[
+                  \varphi([g] + [g']) = \varphi([g]) + \varphi([g'])
+              \]
+              ma poichè $f$ è morfismo di gruppi vale:
+              \[
+                  f(g+g') = f(g) + f(g')
+              \]
+              ricordando la relazione tra $f$ e $\varphi$: $\varphi([g]) = f(g)$, otteniamo
+              \[
+                  \varphi([g] + [g']) = f(g+g') = f(g) + f(g') = \varphi([g]) + \varphi([g'])
+              \]
+              quindi \textbf{$\varphi$ è un morfismo di gruppi}.
+        \item Mostriamo che $\varphi$ è iniettivo sfruttando il teorema \ref{th:1.38}, per definizione del nucleo abbiamo
+              \[
+                  \ker(\varphi) = \{[g] \in \nicefrac{G_1}{\ker(f)} : \varphi([g]) = 0_2\}
+              \]
+              questo significa che $[g]$ sta nel nucleo se e solo se
+              \[
+                  \varphi([g]) = f(g) = 0_2
+              \]
+              ma questo equivale a dire che $g \in \ker(f)$. Qual è la classe di $g$ nel quoziente?
+              \[
+                  [g] = g + \ker (f) = \{g + h : h \in \ker(f)\}
+              \]
+              Ma dato che $g \in \ker(f)$ possiamo riscrivere la classe come
+              \[
+                  [g] = \ker(f)
+              \]
+              che è precisamente la classe neutra (identità del quoziente)
+              \[
+                  [0_1] = 0_1 + \ker(f) = \ker(f)
+              \]
+              Quindi tutti gli elementi di $\ker(f)$ formano \textbf{un'unica classe} nel quoziente, che è a classe neutra del gruppo $\nicefrac{G_1}{\ker(f)}$ indicata come $[0_1]$ quindi il nucleo di $\varphi$ è
+              \[
+                  \ker(\varphi) = \{[0_1]\}
+              \]
+              Essendo il nucleo di $\varphi$ banale, \textbf{la funzione è iniettiva}.
+
+        \item $\varphi : \nicefrac{G_1}{\ker (f)} \to \Im (f)$ è anche suriettiva,
+              cioè
+              \[
+                  \forall y \in \Im(f) \quad \exists [g] \in \nicefrac{G_1}{\ker(f)} : \varphi([g]) = y
+              \]
+              prendendo qualsiasi elemento $y \in \Im(f)$, per definizione di $\Im (f)$ $\exists g \in G_1 : f(g) = y$, ma allora, sempre dalla relazione tra $f$ e $\varphi$ otteniamo:
+              \[
+                  f(g) = \varphi([g]) = y
+              \]
+              quindi per ogni elemento di $\Im(f)$ esiste una classe $[g] \in \nicefrac{G_1}{\ker(f)}$ che lo mappa su di esso, cioè $\varphi$ è    \textbf{suriettivo}.
+    \end{itemize}
+    $\varphi$ è sia iniettivo che suriettivo, quindi è un \textbf{isomorfismo}.
+    Dunque $\nicefrac{G_1}{\ker(f)} \simeq \Im(f)$.
+\end{proof}
+\end{document}
